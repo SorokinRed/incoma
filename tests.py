@@ -23,7 +23,7 @@ def test_uc_1_required_fields(driver):
     register_page.submit = True
     assert register_page.error_message == 'This field is required.'
     assert 'There are errors on the form' in register_page.error_button_message
-    time.sleep(100)
+    assert driver.current_url == 'https://form.jotformeu.com/92251830338354'
 
 def test_uc_2_saved_values(driver):
     register_page = RegisterPage(driver)
