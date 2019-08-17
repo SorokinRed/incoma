@@ -7,9 +7,16 @@ from pom.pages import RegisterPage, SuccessSubmitPage
 
 @pytest.yield_fixture()
 def driver():
-    driver = webdriver.Chrome(
-        executable_path='chromedriver2.43'
-    )
+    capabilities = {
+        "browserName": "chrome",
+        "version": "76.0",
+        "enableVNC": True,
+        "enableVideo": True
+    }
+    driver = webdriver.Remote(
+        command_executor="http://selenoid:4444/wd/hub",
+        desired_capabilities=capabilities)
+    
     driver.set_window_size(1024, 800)
     driver.implicitly_wait(10)
     driver.set_page_load_timeout(10)
